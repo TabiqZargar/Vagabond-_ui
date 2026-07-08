@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Hanken+Grotesk:wght@300;400;500&family=Space+Mono&display=swap');
+@import "tailwindcss";
+
+@theme inline {
+  --color-paper: #F8F5EE;
+  --color-ink: #111111;
+  --color-muted-charcoal: #2A2A2A;
+  --color-light-gray: #D8D3C8;
+  --color-crimson: #7D1F1F;
+  --color-surface: #F8F5EE;
+  --color-outline: #787770;
+
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'Hanken Grotesk', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+
+  --spacing-margin-desktop: 80px;
+  --spacing-margin-mobile: 20px;
+  --spacing-gutter: 24px;
+
+  --animate-ink-spread: ink-spread 1.2s ease-out forwards;
+}
+
+@keyframes ink-spread {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    cursor: none;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: var(--color-crimson);
+    color: var(--color-paper);
+  }
+
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-paper);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-light-gray);
+  }
+
+  a, button, input, textarea, select {
+    cursor: none;
+  }
+
+  @media (hover: none) and (pointer: coarse) {
+    body, a, button, input, textarea, select {
+      cursor: auto;
+    }
+  }
+}
+
+@layer utilities {
+  .vertical-text {
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+  }
+
+  .matting-frame {
+    padding: 40px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: var(--color-paper);
+  }
+
+  .ink-line {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  .ink-line.active {
+    transform: scaleX(1);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
